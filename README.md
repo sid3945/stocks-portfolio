@@ -13,3 +13,7 @@ That takes you to server.js file,
         - config/db.js creates a DB connection  
         - stockRoutes.js creates an express router and deployes actions imported from stockController on routes /stocks and /watchlist (route post /api/)
             -stockController.js this exports two actions 
+        - events/stockEvent.js has an event defined that can be imported and emitted into
+        - events/stockListener listens to the events emitted above and performs respective actions like sending an email
+            - services/emailService.js is a service that uses nodemailer to send an email when stocks are added to watchlist.
+        -middleware/authMiddleware has 2 middlewares that check for the JWT and for the roles

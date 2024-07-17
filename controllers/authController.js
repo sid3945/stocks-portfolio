@@ -20,7 +20,7 @@ const loginUser = async (req, res) => {
 	try {
 		const user = await User.findOne({ username });
 		if (user && (await user.matchPassword(password))) {
-			const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+			const token = jwt.sign({ id: user._id, username: user.username }, process.env.JWT_SECRET, {
 				expiresIn: "1h",
 			});
 			res.json({ token });

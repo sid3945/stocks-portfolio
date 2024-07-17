@@ -4,7 +4,7 @@ Execute `npm run start` to start the backend server.
 
 The project is divided as MVC with separate responsibilities for separation of concerns, maintainability and readability.
 
-# for beginners:
+# Project walk through:
 The entry point to the project is the scripts section of package.json file.
 That takes you to server.js file,
 -Server.js refers to two files: .env and app.js. It imports the exported express app from app.js

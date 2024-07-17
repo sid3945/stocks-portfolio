@@ -29,7 +29,8 @@ async function addStockToWatchlist(req, res){
             price_2007,
             symbol
         });
-        stockEmitter.emit("STOCK_ADDED", stock)
+        stockEmitter.emit("STOCK_ADDED", stock);
+        stockEmitter.emit("SEND_EMAIL", stock);
         await stock.save();
         res.json({ message: "Stock added to watchlist successfully" });
         

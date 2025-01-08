@@ -1,6 +1,10 @@
 {
+  "name": "stocks-portfolio",
+  "version": "1.0.0",
+  "main": "app.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "node app.js",
+    "dev": "nodemon app.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

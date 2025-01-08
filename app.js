@@ -1,18 +1,27 @@
-const express = require("express");
-const cors = require("cors");
-const bodyParser = require("body-parser");
-const stockRoutes = require("./routes/stockRoutes");
-const authRoutes = require("./routes/authRoutes")
-const connectDB = require("./config/db");
-require('./events/stockListener');
+require("dotenv").config();
+const app = require('./express');
 
-const app = express();
+const port = process.env.PORT || 3200;
 
-app.use(cors());
-app.use(bodyParser.json());
+const http = require("http");
+const { Server } = require("socket.io");
 
-connectDB();
+const server = http.createServer(app);
+const io = new Server(server, {
+    cors: {
+        origin: "*",
+        methods: ["GET", "POST"],
+    }
+})
 
-app.use('/api', stockRoutes);
-app.use('/api/auth', authRoutes)
-module.exports = app;
+io.on("connection", (socket)=>{
+    console.log("Socket connection done ", socket);
+
+    socket.on("disconnect", ()=>{
+        console.log("disconnected")
+    });
+});
+
+app.listen(port, ()=>{
+    console.log(`Nodejs up&running on ${port}`);
+})
